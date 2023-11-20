@@ -17,7 +17,7 @@
         </div>
 
         <div class="card">
-            <form action="POST" action="{{ route('login.custom') }}">
+            <form action="POST" action="">
                 <h2>Register</h2>
                 <p>Already have an account? <a href="">login Here</a></p>
                 <input type="text" name="firstName" id="fName" placeholder="Username" class="input">

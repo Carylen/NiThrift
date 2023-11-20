@@ -25,7 +25,7 @@
         </ul>
         <input type="text" class="searchBar" placeholder="Search..">
         <figure class="detailuser">
-            <a href="{{ url('loginPage') }}"><img class="userProfile" src="{{ asset('/SourceIMG/avatar1.jpg') }}"></a>
+            <a href="{{ url('login') }}"><img class="userProfile" src="{{ asset('/SourceIMG/avatar1.jpg') }}"></a>
             <!-- <figcaption style="align-items: center;"><a href="//loginPage.blade.php">Irham Atmoko</a></figcaption> -->
         </figure>
     </header>

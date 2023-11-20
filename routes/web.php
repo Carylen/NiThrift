@@ -23,5 +23,5 @@ Route::get('/detail', function () {
 });
 
 Route::get('/login', function () {
-    return view('login');
+    return view('loginPage');
 });
