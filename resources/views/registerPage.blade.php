@@ -10,30 +10,30 @@
 </head>
 <body>
     <header class="navBar">
-        <img src="/SourceIMG/Logo.png" alt="">
+        <img class="logo" src="/SourceIMG/Logo.png" alt="">
     </header>
     <div class="profile">
-        <div class="logo">
+        <div class="my-auto">
             <img src="/SourceIMG/LoginLogo.png" alt="">
         </div>
         
         <div class="card">
             <h2>Register</h2>
-            <p>Already have an account? <a href="" style="color: green">Login Here</a></p>
-            @include('component/errorMessage')
-            <form action="login/request" method="POST">
+            <p>Have an account yet?<a href="{{ url('/login') }}" style="color: green">Login Here</a></p>
+            @include('component/message')
+            <form action="register/request" method="POST">
                 @csrf
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">First Name</label>
-                    <input type="text" class="form-control" name="firstName" aria-describedby="emailHelp" value="{{ Session::get('fname') }}>
+                    <input type="text" class="form-control" name="fname" aria-describedby="emailHelp" value="{{ Session::get('fname') }}">
                 </div>
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Last Name</label>
-                    <input type="text" class="form-control" name="lastName" aria-describedby="emailHelp" value="{{ Session::get('lname') }}>
+                    <input type="text" class="form-control" name="lname" aria-describedby="emailHelp" value="{{ Session::get('lname') }}">
                 </div>
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Phone Number</label>
-                    <input type="text" class="form-control" name="phone" aria-describedby="emailHelp" value="{{ Session::get('phone') }}>
+                    <input type="text" class="form-control" name="phone" aria-describedby="emailHelp" value="{{ Session::get('phone') }}">
                 </div>
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Email address</label>
@@ -44,11 +44,21 @@
                     <label for="exampleInputPassword1" class="form-label">Password</label>
                     <input type="password" class="form-control" name="password">
                 </div>
-                {{-- <div class="mb-3 form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                </div> --}}
-                <button type="submit" class="btn btn-primary rounded-pill">Submit</button>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Province</label>
+                    <input type="text" class="form-control" name="province" value="{{ Session::get('province') }}">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">City</label>
+                    <input type="text" class="form-control" name="city" value="{{ Session::get('city') }}">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Postcal Code</label>
+                    <input type="number" class="form-control" name="postcode"cvalue="{{ Session::get('postcode') }}">
+                </div>
+                <div class="mb-3 d-grid">
+                    <button type="submit" class="btn btn-primary rounded-pill">Register</button>
+                </div>
             </form>
             <p>By registering, is the data in accordance with 
                 my personal data</p>

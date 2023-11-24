@@ -125,10 +125,10 @@
     border-radius: 10px;
 }
 
-.btn, .btn2:hover {
+/* .btn, .btn2:hover {
     cursor: pointer;
     background-color: rgb(191, 191, 191);
-}
+} */
 
 .btn2 {
     width: 100%;

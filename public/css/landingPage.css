@@ -249,7 +249,12 @@ figcaption{
 }
 
 .logo{
-    height: 5.5vh;
+    height: 10vh;
+    width: 5vh;
+}
+
+.limit{
+    height: 8vh;
 }
 
 .socmed ul{

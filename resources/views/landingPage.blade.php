@@ -17,7 +17,7 @@
 <body>
     @include('component/message')
     <header class="navbar">
-        <img src="/SourceIMG/Logo.png" class="logo">
+        <img src="{{ asset('/SourceIMG/Logo.png') }}" class="logo limit">
         <ul>
             <li class="li-1"><a class="link" href="#home">Home</a></li>
             <li class="li-2"><a class="link2" href="#women">Women</a></li>
@@ -29,8 +29,17 @@
         <div class="rightNav">
 
             <a class="cart" href="#selling"><img src="/SourceIMG/cart-shopping-solid.svg" class="logo"></a>
-            <div class="vline"></div>
-            <a href="{{ url('login') }}"><button type="button" class="btn btn-success">Login</button></a>
+            <div class="vline"></div> {{-- untuk garis pembatas --}}
+            {{-- dibawah ini untuk cek sedang diposisi login/logout --}}
+            @if (Auth::check())
+                @foreach ($userHasLogin as $users)
+                    <figcaption class="me-3 my-auto" style="align-items: center;"><a href="{{ url('profileSettings') }}">{{ $users }}</a></figcaption>   
+                @endforeach
+                <a href="{{ url('logout') }}"><button type="button" class="btn btn-warning">Logout</button></a>
+            @endif
+            @if (!Auth::check())
+                <a href="{{ url('login') }}"><button type="button" class="btn btn-success">Login</button></a>
+            @endif
             {{-- Ini untuk profile picture di kanan atas ketika berhasil login --}}
             {{-- <figure class="detailuser">
                 <a href="{{ url('login') }}"><img class="userProfile" src="{{ asset('/SourceIMG/avatar1.jpg') }}"></a>
@@ -115,9 +124,9 @@
     </div>
     
     <footer class="foot">
-        <div class="logo">
-            <img src="/SourceIMG/Logo.png">
-            <p>Lorem ipsum dolor sit amet consectetur.</p>
+        <div class="">
+            <img class="logo" src="{{ asset('SourceIMG/Logo.png') }}">
+            {{-- <p>Lorem ipsum dolor sit amet consectetur.</p> --}}
         </div>
         <div class="socmed">
             <p>Keep in touch with us!</p>
@@ -129,7 +138,7 @@
         </div>
         <div class="owner">
             <ul>
-                {{-- <li>Irham Zharfan - 2502007880</li> --}}
+                NiThrift - Created &copy; 2023
             </ul>
         </div>
     </footer>

@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('css/landingPage.css') }}">
     <link rel="stylesheet" href="{{ asset('css/detailProduct.css') }}">
-    
     <!-- Styling font 'Poppins' -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,16 +16,26 @@
     <header class="navbar">
         <img src="/SourceIMG/Logo.png" class="logo">
         <ul>
-            <li><a href="#home"><a href="/SourceHTML/landingPage.html">Home</a></a></li>
+            <li><a href="#home"><a href="{{ url('/') }}">Home</a></a></li>
             <li><a href="#women">Women</a></li>
             <li><a href="#men">Men</a></li>
-            <li><a href="#selling">Selling</a></li>
         </ul>
-        <input type="text" class="searchBar" placeholder="Search..">
-        <figure class="detailuser">
-            <a href="/SourceHTML/profileSettings.html"><img class="userProfile" src="/SourceIMG/avatar1.jpg"></a>
-            <!-- <figcaption style="align-items: center;"><a href="/SourceHTML/loginPage.html">Irham Atmoko</a></figcaption> -->
-        </figure>
+        {{-- dibawah ini untuk cek sedang diposisi login/logout --}}
+        <div class="rightNav">
+
+            <a class="cart" href="#selling"><img src="/SourceIMG/cart-shopping-solid.svg" class="logo"></a>
+            <div class="vline"></div> {{-- untuk garis pembatas --}}
+            {{-- dibawah ini untuk cek sedang diposisi login/logout --}}
+            @if (Auth::check())
+                {{-- @foreach ($userHasLogin as $users)
+                    <figcaption class="me-2 my-auto" style="align-items: center;"><a href="{{ url('profileSettings') }}">{{ $users }}</a></figcaption>   
+                @endforeach --}}
+                <a href="{{ url('logout') }}"><button type="button" class="btn btn-warning">Logout</button></a>
+            @endif
+            @if (!Auth::check())
+                <a href="{{ url('login') }}"><button type="button" class="btn btn-success">Login</button></a>
+            @endif
+        </div>  
     </header>
 
     <div class="container">

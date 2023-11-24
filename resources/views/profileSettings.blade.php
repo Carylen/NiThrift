@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/SourceCSS/landingPage.css">
-    <link rel="stylesheet" href="/SourceCSS/profile.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ asset('css/landingPage.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
     
     <!-- Styling font 'Poppins' -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,13 +21,8 @@
             <li><a href="#home"><a href="/SourceHTML/landingPage.html">Home</a></a></li>
             <li><a href="#women">Women</a></li>
             <li><a href="#men">Men</a></li>
-            <li><a href="#selling">Selling</a></li>
         </ul>
-        <input type="text" class="searchBar" placeholder="Search..">
-        <figure class="detailuser">
-            <a href="/SourceHTML/profileSettings.html"><img class="userProfile" src="/SourceIMG/avatar1.jpg"></a>
-            <!-- <figcaption><a href="/SourceHTML/loginPage.html">Irham Atmoko</a></figcaption> -->
-        </figure>
+        <a href="{{ url('logout') }}"><button type="button" class="btn btn-warning p-2">Logout</button></a>
     </header>
     <div class="container-profile">
         <div class="page1">
@@ -110,20 +106,20 @@
             </ul>
         </div>
         <div class="owner">
-            <ul>
+            {{-- <ul>
                 <li>Irham Zharfan - 2502007880</li>
                 <li>Evelyn Chrisyla Valentina - 2502028336</li>
                 <li>Jedith Almando Istian - 2502016922</li>
                 <li>Theofilus Jonathan - 2540117533</li>
                 <li>Farrel Alexander Tjan - 2502013744</li>
-            </ul>
+            </ul> --}}
         </div>
     </footer>
     
     <div class="label">
         <h3>Hubungi kami jika ingin barang terbaik dengan harga terbaik</h3>
     </div>
-    <script src="/SourceJS/profile.js"></script>
+    <script src="{{ asset('js/profile.js') }}"></script>
     <script src="https://kit.fontawesome.com/779f43f783.js" crossorigin="anonymous"></script>
 </body>
 </html>

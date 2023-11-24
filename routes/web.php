@@ -19,9 +19,13 @@ Route::get('/', function () {
     return view('landingPage');
 });
 
-Route::get('/detail', function () {
+Route::get('/detail',  function(){
     return view('detailProduct');
 });
 
 Route::get('/login', [UserController::class, 'index']);
 Route::post('login/request', [UserController::class, 'login']);
+Route::get('/register', [UserController::class, 'toRegister']);
+Route::post('register/request', [UserController::class, 'register']);
+Route::get('/profileSettings', [UserController::class, 'profileSettings']);
+Route::get('/logout', [UserController::class,'logout']);

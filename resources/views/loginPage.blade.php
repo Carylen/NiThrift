@@ -10,16 +10,16 @@
 </head>
 <body>
     <header class="navBar">
-        <img src="/SourceIMG/Logo.png" alt="">
+        <img class="logo" src="/SourceIMG/Logo.png" alt="">
     </header>
     <div class="profile">
-        <div class="logo">
+        <div class="">
             <img src="/SourceIMG/LoginLogo.png" alt="">
         </div>
         
         <div class="card">
-            <h2>Register</h2>
-            <p>Already have an account? <a href="" style="color: green">Login Here</a></p>
+            <h2>Login</h2>
+            <p>Don't have an account yet?<a href="{{ url('/register') }}" style="color: green">Register Here</a></p>
             @include('component/message')
             <form action="login/request" method="POST">
                 @csrf
@@ -36,11 +36,9 @@
                     <label for="exampleInputPassword1" class="form-label">Password</label>
                     <input type="password" class="form-control" name="password">
                 </div>
-                {{-- <div class="mb-3 form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                </div> --}}
-                <button type="submit" class="btn btn-primary rounded-pill">Submit</button>
+                <div class="mb-3 d-grid">
+                    <button type="submit" class="btn btn-primary rounded-pill">Login</button>
+                </div>
             </form>
             <p>By registering, is the data in accordance with 
                 my personal data</p>

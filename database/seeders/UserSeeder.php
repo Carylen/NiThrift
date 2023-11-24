@@ -23,7 +23,6 @@ class UserSeeder extends Seeder
             "province" => "jakarta",
             "city" => "Jakarta Utara",
             "postcalCode" => 11480
-
         ]);
     }
 }

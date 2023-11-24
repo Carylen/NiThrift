@@ -1,0 +1,2 @@
+@include('detailProduct')
+@include('landingPage')
