@@ -25,6 +25,10 @@ function showSlides(n) {
     slides[i].style.display = "none";
     pageNumber[i].innerHTML = "Product " + slideIndex;
   }
+  slideIndex++;
+  if (slideIndex > slides.length) {slideIndex = 1}
+  slides[slideIndex-1].style.display = "block";
+  setTimeout(showSlides, 4000); // Change image every 2 seconds
 
 //   for (i = 0; i < dots.length; i++) {
 //     dots[i].className = dots[i].className.replace(" active", "");

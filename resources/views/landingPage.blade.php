@@ -4,30 +4,39 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ asset('css/landingPage.css') }}">
-
-
+    
+    
     <!-- Styling font 'Poppins' -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ asset('css/landingPage.css') }}">
     <title>Thrift Termurah sejagat raya</title>
 </head>
 <body>
+    @include('component/message')
     <header class="navbar">
         <img src="/SourceIMG/Logo.png" class="logo">
         <ul>
             <li class="li-1"><a class="link" href="#home">Home</a></li>
             <li class="li-2"><a class="link2" href="#women">Women</a></li>
             <li class="li-3"><a class="link3" href="#men">Men</a></li>
-            <li><a href="#selling">Selling</a></li>
             <li class="bottom_line"></li>
         </ul>
-        <input type="text" class="searchBar" placeholder="Search..">
-        <figure class="detailuser">
-            <a href="{{ url('login') }}"><img class="userProfile" src="{{ asset('/SourceIMG/avatar1.jpg') }}"></a>
-            <!-- <figcaption style="align-items: center;"><a href="//loginPage.blade.php">Irham Atmoko</a></figcaption> -->
-        </figure>
+        {{-- ini untuk searchbarnya --}}
+        {{-- <input type="text" class="searchBar" placeholder="Search.."> --}}
+        <div class="rightNav">
+
+            <a class="cart" href="#selling"><img src="/SourceIMG/cart-shopping-solid.svg" class="logo"></a>
+            <div class="vline"></div>
+            <a href="{{ url('login') }}"><button type="button" class="btn btn-success">Login</button></a>
+            {{-- Ini untuk profile picture di kanan atas ketika berhasil login --}}
+            {{-- <figure class="detailuser">
+                <a href="{{ url('login') }}"><img class="userProfile" src="{{ asset('/SourceIMG/avatar1.jpg') }}"></a>
+                <figcaption style="align-items: center;"><a href="//loginPage.blade.php">Irham Atmoko</a></figcaption>
+            </figure> --}}
+        </div>
     </header>
 
     <div class="higlight-container">
@@ -86,7 +95,7 @@
         </div>
         <div class="card test">
             <a href="{{ url('detail') }}">
-                <div class="caption" style="margin-top: 2%">Air Force 1</div>
+                <div class="caption">Air Force 1</div>
                 <img class="catalog" src = "/SourceIMG/AirForce1-3.png" ></a>
                 <div class="caption price">Rp. 1.xxx.xxx</div>
             </a>
@@ -120,7 +129,7 @@
         </div>
         <div class="owner">
             <ul>
-                <li>Irham Zharfan - 2502007880</li>
+                {{-- <li>Irham Zharfan - 2502007880</li> --}}
             </ul>
         </div>
     </footer>
@@ -131,6 +140,7 @@
 
     <script src="{{ asset('js/highlight.js') }}"></script>
     <script src="https://kit.fontawesome.com/779f43f783.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="{{ asset('js/landingPage.js') }}"></script>
     <script src="{{ asset('js/directToCategory.js') }}"></script>
     <!-- <script src="/SourceJS/cardProduct.js"></script> -->

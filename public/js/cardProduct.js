@@ -10,9 +10,9 @@ const cardProduct = () =>{
     card.className = "card test"
     
     card.innerHTML = `
-    <div class="caption addOn">Air Force 1</div>
+    <p class="caption addOn">Air Force 1</p>
     <img class="catalog" src = "/SourceIMG/AirForce1-3.png" ></a>
-    <div class="caption price ">Rp. 1.xxx.xxx</div>
+    <p class="caption price ">Rp. 1.xxx.xxx</p>
     `;
     
     anchor.appendChild(card)

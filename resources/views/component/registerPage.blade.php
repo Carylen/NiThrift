@@ -20,13 +20,21 @@
         <div class="card">
             <h2>Register</h2>
             <p>Already have an account? <a href="" style="color: green">Login Here</a></p>
-            @include('component/message')
+            @include('component/errorMessage')
             <form action="login/request" method="POST">
                 @csrf
-                {{-- <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Username</label>
-                    <input type="text" class="form-control" name="username" aria-describedby="emailHelp">
-                </div> --}}
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">First Name</label>
+                    <input type="text" class="form-control" name="firstName" aria-describedby="emailHelp" value="{{ Session::get('fname') }}>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Last Name</label>
+                    <input type="text" class="form-control" name="lastName" aria-describedby="emailHelp" value="{{ Session::get('lname') }}>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Phone Number</label>
+                    <input type="text" class="form-control" name="phone" aria-describedby="emailHelp" value="{{ Session::get('phone') }}>
+                </div>
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Email address</label>
                     <input type="email" class="form-control" name="email" aria-describedby="emailHelp" value="{{ Session::get('email') }}">

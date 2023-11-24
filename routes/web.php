@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CustomAuthController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,5 @@ Route::get('/detail', function () {
     return view('detailProduct');
 });
 
-Route::get('/login', function () {
-    return view('loginPage');
-});
+Route::get('/login', [UserController::class, 'index']);
+Route::post('login/request', [UserController::class, 'login']);
