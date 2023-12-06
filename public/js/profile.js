@@ -10,7 +10,7 @@ list.addEventListener("click",
     detailInfo.style.display = "flex";
     usrLoc.style.display = "none"
     changePass.style.display = "none"
-    list.className = "list ul li::after2"
+    list.className = "list ul li::after"
     }
 )
 
@@ -29,3 +29,4 @@ list3.addEventListener("click",
         changePass.style.display = "block"
     }
 )
+

@@ -23,13 +23,18 @@
             @include('component/message')
             <form action="register/request" method="POST">
                 @csrf
-                <div class="mb-3">
+                {{-- <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">First Name</label>
-                    <input type="text" class="form-control" name="fname" aria-describedby="emailHelp" value="{{ Session::get('fname') }}">
+                    <input type="text" class="form-control" name="fname " aria-describedby="emailHelp" value="{{ Session::get('fname') }}">
                 </div>
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Last Name</label>
                     <input type="text" class="form-control" name="lname" aria-describedby="emailHelp" value="{{ Session::get('lname') }}">
+                </div> --}}
+                <div class="input-group">
+                    <span class="input-group-text">First and last name</span>
+                    <input type="text" name="fname" class="form-control" value="{{ Session::get('fname') }}">
+                    <input type="text" name="lname" class="form-control" value="{{ Session::get('lname') }}">
                 </div>
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Phone Number</label>

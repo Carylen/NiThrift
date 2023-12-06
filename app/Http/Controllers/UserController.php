@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use App\Http\Controllers\Input;
 
 // use Illuminate\Validation\Validator;
 
@@ -31,8 +33,9 @@ class UserController extends Controller
         ];
 
         if (Auth::attempt($infologin)) {
-            $userHasLogin = Auth::user()->firstName;
-            return view('landingPage') ->with('success', 'Hi! '. Auth::user()->firstName . ' ' . Auth::user()->lastName)->with('userHasLogin', compact('userHasLogin'));
+            $userid = Auth::user()->id;
+            return redirect('/')->with('success', 'Hi! '. Auth::user()->firstName . " " . Auth::user()->lastName)->with('userid', compact('userid'));
+            // return view('landingPage', ['user' => $userHasLogin])->with('success', 'Hi! '. Auth::user()->firstName . ' ' . Auth::user()->lastName);
         } else {
             return redirect('login')->withErrors('incorrect email or password');
         }
@@ -52,7 +55,6 @@ class UserController extends Controller
         Session::flash('lname',$request->lname);
         Session::flash('phone',$request->phone);
         Session::flash('email',$request->email);
-        // Session::flash('password',$request->password);
         Session::flash('province',$request->province);
         Session::flash('city',$request->city);
         Session::flash('postcode',$request->postcode);
@@ -89,20 +91,91 @@ class UserController extends Controller
         ];
 
         if (Auth::attempt($infologin)) {
-            return view('landingPage')->with('success', 'Hi! '. Auth::user()->firstName.Auth::user()->lastName)->with(['user' => Auth::user()->firstName]);
+            $userid = Auth::user()->id;
+            return redirect('/')->with('success', 'Hi! '. Auth::user()->firstName . " " . Auth::user()->lastName)->with('userid', compact('userid'));
+            // return view('landingPage', ['user' => $userHasLogin])->with('success', 'Hi! '. Auth::user()->firstName . ' ' . Auth::user()->lastName);
         } else {
             return redirect('login')->withErrors('incorrect email or password');
         }
     }
 
-    public function profileSettings(){
-        return view('profileSettings');
-        
+    // Function untuk setting detail profile dari user
+    public function profileSettings($id){
+        $dataUpdate = User::where('id', $id)->get();
+        return view('profileSettings', ['user' => $dataUpdate]);        
     }    
 
-    public function updateProfileSettings(Request $request){
-        // 
+    // Untuk POST method ketika update data dari detail User
+    public function updateProfileSettings(Request $request, $id){
+        $data = User::findorfail($id);
+        
+        // request file foto dari [profileSettings.blade.php] di validate untuk extensionnya
+        $photo = $request->file('photo');
+        
+        // Cek condition apakah data foto di db == NULL
+        if($request->hasFile('photo')){
+            $request->validate([ 'photo' =>'required|mimes:png,jpg,jpeg' ]);
+            $path = 'photo';
+            if ($data->image) {
+                // jika TRUE (file exists) -> maka penamaannya akan menimpa nama file lama, mencegah duplicate data.
+                $photoName = ($data->image);
+            } else {
+                // Jika FALSE (file doesn't exists) -> maka penamaan baru : [id-firstName].jpg/jpeg/png 
+                $photoExtension = $photo->extension();
+                $photoName = $id . "-" . $data->firstName . "." . $photoExtension;
+            }
+            
+            $photoName = Hash::make($photoName);
+            $photo->move(public_path($path), $photoName);
+            $location = ($path . "/" . $photoName);
+            $data->image = $location;
+            $data->save();
+        }
+
+        
+        
+        // if($request->has(['phone', 'province', 'city', 'postcalCode'])){
+        //     $request->validate([
+        //         'phone' => 'nullable',
+        //         'province' => 'nullable',
+        //         'city' => 'nullable',
+        //         'postcalCode' => 'nullable',
+        //     ]);
+        //     $data->phone = $request->input('phone');
+        //     $data->province = $request->input('province');
+        //     $data->city = $request->input('city');
+        //     $data->postcalCode = $request->input('postcalCode');
+        //     $data->save();
+        // }
+
+        // cek tiap field apakah menerima input dari user atau tidak, if True -> update to db
+        if($request->has('phone')){
+            $data->phone = $request->input('phone');
+        }
+        if($request->has('province')){
+            $data->province = $request->input('province');
+        }
+        if($request->has('city')){
+            $data->city = $request->input('city');
+        }
+        if($request->has('postcalCode')){
+            $data->postcalCode = $request->input('postcalCode');
+        }
+        $data->save();
+        return redirect('/')->with('success', 'Data berhasil diperbarui');
+        
     }
 
+    public function destroy($id){
+        User::where('id', $id)->delete();
+    }
+
+    public function destroyImage($id){
+        $data = User::where('id', $id)->first();
+        File::delete(public_path('photo'). '/' . $data->image);
+        $data->update(['image' => null]); # --> delete data image dari db (null)
+
+        return redirect()->back();
+    }
     
 }

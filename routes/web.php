@@ -23,9 +23,20 @@ Route::get('/detail',  function(){
     return view('detailProduct');
 });
 
-Route::get('/login', [UserController::class, 'index']);
-Route::post('login/request', [UserController::class, 'login']);
-Route::get('/register', [UserController::class, 'toRegister']);
-Route::post('register/request', [UserController::class, 'register']);
-Route::get('/profileSettings', [UserController::class, 'profileSettings']);
-Route::get('/logout', [UserController::class,'logout']);
+Route::get('/login', [UserController::class, 'index']);// --> untuk direct ke loginPage.blade.php
+
+Route::post('/login/request', [UserController::class, 'login']); // --> untuk proses Authentication pada saat login
+
+Route::get('/register', [UserController::class, 'toRegister']); // --> untuk direct ke registerPage.blade.php
+
+Route::post('/register/request', [UserController::class, 'register']); // --> untuk proses Registration sekaligus Authentication (Auto Login After Regist)
+
+Route::get('/profileSettings/{id}', [UserController::class, 'profileSettings']);
+
+Route::post('/profileSettings/update/{id}', [UserController::class, 'updateProfileSettings'])->name('updateProfile');
+
+Route::get('/profileSettings/delete/{id}', [UserController::class, 'destroyImage'])->name('deleteImage');
+
+// Route::post('profileSettings/image', [UserController::class, 'updateProfileSettings']);
+
+Route::get('logout', [UserController::class,'logout']);

@@ -8,6 +8,10 @@
     text-decoration: none;
 }
 
+b{
+    font-weight: bold;
+}
+
 .container-profile{
     display: flex;
     flex-direction: row;
@@ -15,7 +19,8 @@
 }
 
 .page1{
-    flex-basis: 1;
+    flex-grow: .2;
+    justify-content: center;
     border: 1px solid grey;
     border-radius: 15px;
     background-color: whitesmoke;
@@ -23,10 +28,78 @@
     margin-right: .5%;
 }
 
+
+/* untuk avatar preview */
+.avatar-upload {
+    position: relative;
+    max-width: 205px;
+    margin: 50px auto;
+    .avatar-edit {
+        position: absolute;
+        right: 17px;
+        z-index: 1;
+        top: 10px;
+        input {
+            display: none;
+            + label {
+                display: inline-block;
+                width: 34px;
+                height: 34px;
+                margin-bottom: 0;
+                border-radius: 100%;
+                background: #FFFFFF;
+                border: 1px solid transparent;
+                box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
+                cursor: pointer;
+                font-weight: normal;
+                transition: all .2s ease-in-out;
+                &:hover {
+                    background: rgba(0, 0, 0, 0.6);
+                    border-color: #d6d6d6;
+                }
+                &:after {
+                    content: "\f040";
+                    font-family: 'FontAwesome';
+                    color: #757575;
+                    position: absolute;
+                    top: 8px;
+                    left: 0;
+                    right: 0;
+                    text-align: center;
+                    margin: auto;
+                }
+            }
+        }
+    }
+    .avatar-preview {
+        width: 192px;
+        height: 192px;
+        position: relative;
+        border-radius: 100%;
+        border: 6px solid #F8F8F8;
+        box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
+        > div {
+            width: 100%;
+            height: 100%;
+            border-radius: 100%;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+    }
+}
+
 .dataUser {
     margin-top: 15vh;
     display: flex;
+    justify-content: space-between;
     flex-direction: column;
+}
+
+.partOfData{
+    display: flex;
+    flex-direction: row;
+    /* justify-content: space-around; */
 }
 
 .page2{
@@ -58,7 +131,7 @@
     background-color: black;
     margin: auto;
     display: flex;
-    transition: all 350ms ease-in-out;
+    transition: all 250ms ease-in-out;
 }
 
 .list ul li:hover::after{
@@ -107,9 +180,11 @@
 }
 
 .changePass-container {
-    
-    row-gap: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
+
 .save{
     width: 25vh;
     /* height: 5.5vh; */

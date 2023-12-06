@@ -24,27 +24,24 @@
             <li class="li-3"><a class="link3" href="#men">Men</a></li>
             <li class="bottom_line"></li>
         </ul>
-        {{-- ini untuk searchbarnya --}}
-        {{-- <input type="text" class="searchBar" placeholder="Search.."> --}}
         <div class="rightNav">
 
-            <a class="cart" href="#selling"><img src="/SourceIMG/cart-shopping-solid.svg" class="logo"></a>
-            <div class="vline"></div> {{-- untuk garis pembatas --}}
-            {{-- dibawah ini untuk cek sedang diposisi login/logout --}}
-            @if (Auth::check())
-                @foreach ($userHasLogin as $users)
-                    <figcaption class="me-3 my-auto" style="align-items: center;"><a href="{{ url('profileSettings') }}">{{ $users }}</a></figcaption>   
-                @endforeach
-                <a href="{{ url('logout') }}"><button type="button" class="btn btn-warning">Logout</button></a>
+            {{-- <a class="cart" href="#selling"><img src="/SourceIMG/cart-shopping-solid.svg" class="logo"></a> --}}
+            
+            @if (Auth::check()) {{-- untuk cek Login -> True or False sehingga menampilkan informasi ketika sudah login --}}
+                <a href="profileSettings/{{Auth::user()->id}}">
+                    {{-- <img class="userProfile" src="{{ asset('photo') . '/' . Auth::user()->image }}"> --}}
+                    <img class="userProfile" src="{{ asset(Auth::user()->image) }}">
+                </a>
+                <figcaption class="mx-3 my-auto" style="align-items: center;">{{  Auth::user()->firstName }}</figcaption>   
+                <div class="vline"></div> {{-- untuk garis pembatas --}}
+                <a href="{{ url('logout') }}">
+                    <button type="button" class="btn btn-warning">Logout</button>
+                </a>
             @endif
             @if (!Auth::check())
                 <a href="{{ url('login') }}"><button type="button" class="btn btn-success">Login</button></a>
             @endif
-            {{-- Ini untuk profile picture di kanan atas ketika berhasil login --}}
-            {{-- <figure class="detailuser">
-                <a href="{{ url('login') }}"><img class="userProfile" src="{{ asset('/SourceIMG/avatar1.jpg') }}"></a>
-                <figcaption style="align-items: center;"><a href="//loginPage.blade.php">Irham Atmoko</a></figcaption>
-            </figure> --}}
         </div>
     </header>
 
@@ -150,8 +147,8 @@
     <script src="{{ asset('js/highlight.js') }}"></script>
     <script src="https://kit.fontawesome.com/779f43f783.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@2.8.2/dist/alpine.min.js"></script>
     <script src="{{ asset('js/landingPage.js') }}"></script>
     <script src="{{ asset('js/directToCategory.js') }}"></script>
-    <!-- <script src="/SourceJS/cardProduct.js"></script> -->
 </body>
 </html>
