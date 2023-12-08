@@ -22,6 +22,9 @@ Route::get('/', function () {
 Route::get('/detail',  function(){
     return view('detailProduct');
 });
+Route::get('/create', function(){
+    return view('addProduct');
+});
 
 Route::get('/login', [UserController::class, 'index']);// --> untuk direct ke loginPage.blade.php
 
@@ -40,3 +43,5 @@ Route::get('/profileSettings/delete/{id}', [UserController::class, 'destroyImage
 // Route::post('profileSettings/image', [UserController::class, 'updateProfileSettings']);
 
 Route::get('logout', [UserController::class,'logout']);
+
+Route::post('/create', [ProductController::class, 'store'])-> name('storeproduct');

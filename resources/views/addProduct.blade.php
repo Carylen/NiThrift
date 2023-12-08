@@ -22,10 +22,11 @@
             <li class="li-1"><a class="link" href="#home">Home</a></li>
             <li class="li-2"><a class="link2" href="#women">Women</a></li>
             <li class="li-3"><a class="link3" href="#men">Men</a></li>
-            <li><a href="{{ url('/create') }}"> Add Product </a></li>
             <li class="bottom_line"></li>
         </ul>
         <div class="rightNav">
+            
+        
 
             {{-- <a class="cart" href="#selling"><img src="/SourceIMG/cart-shopping-solid.svg" class="logo"></a> --}}
             
@@ -45,82 +46,44 @@
             @endif
         </div>
     </header>
+    <div class = "container mt-2 mb-4 ml-3 mr-5">
+    <h3>Add Product</h3>
 
-    <div class="higlight-container">
-        <div class="mySlides fade">
-            <img class= "himage" src="{{ asset('/SourceIMG/Travis Scott x McDonalds Live From Utopia T-Shirt Black.png') }}" style="width: 100%;" alt="">
-            <figcaption class="test"></figcaption>
-        </div>
-        <div class="mySlides fade">
-            <img class= "himage" src="{{ asset('/SourceIMG/Travis Scott Black Bing - Washed Tee.png') }}"  style="width: 100%;" alt="">
-            <figcaption class="test"></figcaption>
-        </div>
-        <div class="mySlides fade">
-            <img class= "himage" src="{{ asset('/SourceIMG/Cry Over Me - Washed Tee.png') }}" style="width: 100%;" alt="">
-            <figcaption class="test"></figcaption>
-        </div>
-        <div class="mySlides fade">
-            <img class= "himage" src="{{ asset('/SourceIMG/AirForce1-2.png') }}" style="width: 100%;" alt="">
-            <figcaption class="test"></figcaption>
-        </div>
-        <!-- ini untuk button next/prev -->
-        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-        <a class="next" onclick="plusSlides(1)">&#10095;</a>
-
+<form method="POST" action="{{ route('storeproduct') }}">
+    @csrf
+    <div class="mb-3">
+        <label for="product-name" class="form-label">Product Name</label>
+        <input type="text" class="form-control" id="product-name" name="product-name"
+            required>
     </div>
 
-    <!-- Bagian Trending  -->
-    <h3 class="" style="padding:2% 0% 0% 15%">Trending</h3>
-    <div class="forYou">
-        <div class="card test">
-            <a href="{{ url('detail') }}">
-                <div class="caption addOn">Air Force 1</div>
-                <img class="catalog" src = "/SourceIMG/AirForce1-3.png" ></a>
-                <div class="caption price">Rp. 1.xxx.xxx</div>
-            </a>
-        </div>
-        <div class="card test">
-            <a href="{{ url('detail') }}">
-                <div class="caption">Air Force 1</div>
-                <img class="catalog" src = "/SourceIMG/AirForce1-3.png" ></a>
-                <div class="caption price">Rp. 1.xxx.xxx</div>
-            </a>
-        </div>
-        <div class="card test">
-            <a href="{{ url('detail') }}">
-                <div class="caption">Air Force 1</div>
-                <img class="catalog" src = "/SourceIMG/AirForce1-3.png" ></a>
-                <div class="caption price">Rp. 1.xxx.xxx</div>
-            </a>
-        </div>
-        <div class="card test">
-            <a href="{{ url('detail') }}">
-                <div class="caption">Air Force 1</div>
-                <img class="catalog" src = "/SourceIMG/AirForce1-3.png" ></a>
-                <div class="caption price">Rp. 1.xxx.xxx</div>
-            </a>
-        </div>
-        <div class="card test">
-            <a href="{{ url('detail') }}">
-                <div class="caption">Air Force 1</div>
-                <img class="catalog" src = "/SourceIMG/AirForce1-3.png" ></a>
-                <div class="caption price">Rp. 1.xxx.xxx</div>
-            </a>
-        </div>
+    <div class="mb-3">
+        <label for="product-description" class="form-label">Product Description</label>
+        <textarea class="form-control" id="product-description" name="product-description" rows="3" required></textarea>
+    </div>
+    <div class="mb-3">
+        <label for="starting-price" class="form-label">Starting Price</label>
+        <input type="number" min="0" class="form-control" id="starting-price"
+            name="starting-price" required step="1000">
+    </div>
+    <div class="mb-3">
+        <label for="product-image" class="form-label">Product Image</label>
+        <input type="file" class="form-control" id="product-image" name="product-image" >
+    </div>
+    <div class="mb-3">
+        <label for="start-time" class="form-label">Start Time</label>
+        <input type="datetime-local" class="form-control" id="start-time"
+            name="start-time" required>
+    </div>
+    <div class="mb-3">
+        <label for="end-time" class="form-label">End Time</label>
+        <input type="datetime-local" class="form-control" id="end-time" name="end-time"
+            required>
     </div>
 
-    <!-- Bagian Women -->
-    <h3 id="women" style="padding:10% 0% 2% 15%">Women</h3>
-    <div class="women-container">
-        
-    </div>
-
-    <!-- Bagian Men  -->
-    <h3 id="men" style="padding:10% 0% 2% 15%">Men</h3>
-    <div class="men-container">
-        
-    </div>
-    
+    <button type="submit" class="btn btn-primary">Add Product</button>
+</form>
+</div>
     <footer class="foot">
         <div class="">
             <img class="logo" src="{{ asset('SourceIMG/Logo.png') }}">
