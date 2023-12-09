@@ -43,34 +43,6 @@
                 <img class="catalog" src = "/SourceIMG/AirForce1-3.png" ></a>
                 <div class="caption price">Rp. 1.xxx.xxx</div>
             </a>
-        </div>
-        <div class="card test">
-            <a href="{{ url('detail') }}">
-                <div class="caption">Air Force 1</div>
-                <img class="catalog" src = "/SourceIMG/AirForce1-3.png" ></a>
-                <div class="caption price">Rp. 1.xxx.xxx</div>
-            </a>
-        </div>
-        <div class="card test">
-            <a href="{{ url('detail') }}">
-                <div class="caption">Air Force 1</div>
-                <img class="catalog" src = "/SourceIMG/AirForce1-3.png" ></a>
-                <div class="caption price">Rp. 1.xxx.xxx</div>
-            </a>
-        </div>
-        <div class="card test">
-            <a href="{{ url('detail') }}">
-                <div class="caption">Air Force 1</div>
-                <img class="catalog" src = "/SourceIMG/AirForce1-3.png" ></a>
-                <div class="caption price">Rp. 1.xxx.xxx</div>
-            </a>
-        </div>
-        <div class="card test">
-            <a href="{{ url('detail') }}">
-                <div class="caption">Air Force 1</div>
-                <img class="catalog" src = "/SourceIMG/AirForce1-3.png" ></a>
-                <div class="caption price">Rp. 1.xxx.xxx</div>
-            </a>
         </div> --}}
     </div>
 
