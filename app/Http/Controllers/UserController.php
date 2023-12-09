@@ -35,7 +35,6 @@ class UserController extends Controller
         if (Auth::attempt($infologin)) {
             $userid = Auth::user()->id;
             return redirect('/')->with('success', 'Hi! '. Auth::user()->firstName . " " . Auth::user()->lastName)->with('userid', compact('userid'));
-            // return view('landingPage', ['user' => $userHasLogin])->with('success', 'Hi! '. Auth::user()->firstName . ' ' . Auth::user()->lastName);
         } else {
             return redirect('login')->withErrors('incorrect email or password');
         }
@@ -43,6 +42,7 @@ class UserController extends Controller
 
     public function logout(){
         Auth::logout();
+        Session::flush();
         return redirect('/')->with('success','Log Out success');
     }
 
@@ -116,37 +116,20 @@ class UserController extends Controller
         if($request->hasFile('photo')){
             $request->validate([ 'photo' =>'required|mimes:png,jpg,jpeg' ]);
             $path = 'photo';
+
             if ($data->image) {
                 // jika TRUE (file exists) -> maka penamaannya akan menimpa nama file lama, mencegah duplicate data.
                 $photoName = ($data->image);
             } else {
                 // Jika FALSE (file doesn't exists) -> maka penamaan baru : [id-firstName].jpg/jpeg/png 
                 $photoExtension = $photo->extension();
-                $photoName = $id . "-" . $data->firstName . "." . $photoExtension;
+                $photoName = $path . "/" . $id . "-" . $data->firstName . "." . $photoExtension;
             }
             
-            $photoName = Hash::make($photoName);
             $photo->move(public_path($path), $photoName);
-            $location = ($path . "/" . $photoName);
-            $data->image = $location;
+            $data->image = $photoName;
             $data->save();
         }
-
-        
-        
-        // if($request->has(['phone', 'province', 'city', 'postcalCode'])){
-        //     $request->validate([
-        //         'phone' => 'nullable',
-        //         'province' => 'nullable',
-        //         'city' => 'nullable',
-        //         'postcalCode' => 'nullable',
-        //     ]);
-        //     $data->phone = $request->input('phone');
-        //     $data->province = $request->input('province');
-        //     $data->city = $request->input('city');
-        //     $data->postcalCode = $request->input('postcalCode');
-        //     $data->save();
-        // }
 
         // cek tiap field apakah menerima input dari user atau tidak, if True -> update to db
         if($request->has('phone')){

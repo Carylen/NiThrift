@@ -30,21 +30,19 @@
             <form action="{{ route('updateProfile', $data->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
-                    {{-- <label for="photo">Choose File</label> --}}
                     <div class="avatar-upload">
                         <div class="avatar-edit">
                             <input type='file' name="photo" id="photo"/>
                             <label for="photo"></label>
                         </div>
                         <div class="avatar-preview">
-                            {{-- <div id="imagePreview" style="background-image: url('{{ asset('photo') . '/' . $data->image }}');"></div> --}}
                             <div id="imagePreview" style="background-image: url('{{ asset($data->image) }}');"></div>
                             <figure class="text-center my-3">
                                 <figcaption>{{ $data->firstName }}</figcaption>
                             </figure>
                         </div>
                     </div>
-                    
+
                     <div class="container-sm text-center">
                         <div class="btn btn-danger py-2 m-2">
                             <a href="{{ route('deleteImage', $data->id) }}">Delete</a>
