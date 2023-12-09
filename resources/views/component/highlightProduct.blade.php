@@ -26,50 +26,52 @@
     <!-- Bagian Trending  -->
     <h3 class="" style="padding:2% 0% 0% 15%">Trending</h3>
     <div class="forYou">
+        {{-- ini untuk nampilin product di landingPage --}}
+        @foreach ($product as $item)
+        <div class="card test">
+            <a href="{{ route('detailProduct', $item->id) }}">
+                <div class="caption">{{ $item->name }}</div>
+                <img class="catalog" src = "{{ asset($item->image) }}" ></a>
+                <div class="caption price">Rp. {{ $item->price }}</div>
+            </a>
+        </div>
+        @endforeach
+
         {{-- <div class="card test">
             <a href="{{ url('detail') }}">
                 <div class="caption addOn">Air Force 1</div>
                 <img class="catalog" src = "/SourceIMG/AirForce1-3.png" ></a>
                 <div class="caption price">Rp. 1.xxx.xxx</div>
             </a>
+        </div>
+        <div class="card test">
+            <a href="{{ url('detail') }}">
+                <div class="caption">Air Force 1</div>
+                <img class="catalog" src = "/SourceIMG/AirForce1-3.png" ></a>
+                <div class="caption price">Rp. 1.xxx.xxx</div>
+            </a>
+        </div>
+        <div class="card test">
+            <a href="{{ url('detail') }}">
+                <div class="caption">Air Force 1</div>
+                <img class="catalog" src = "/SourceIMG/AirForce1-3.png" ></a>
+                <div class="caption price">Rp. 1.xxx.xxx</div>
+            </a>
+        </div>
+        <div class="card test">
+            <a href="{{ url('detail') }}">
+                <div class="caption">Air Force 1</div>
+                <img class="catalog" src = "/SourceIMG/AirForce1-3.png" ></a>
+                <div class="caption price">Rp. 1.xxx.xxx</div>
+            </a>
+        </div>
+        <div class="card test">
+            <a href="{{ url('detail') }}">
+                <div class="caption">Air Force 1</div>
+                <img class="catalog" src = "/SourceIMG/AirForce1-3.png" ></a>
+                <div class="caption price">Rp. 1.xxx.xxx</div>
+            </a>
         </div> --}}
-        @foreach ($product as $item)
-            <div class="card test">
-                <a href="{{ route('detailProduct', $item->id) }}">
-                    <div class="caption">{{ $item->name }}</div>
-                    <img class="catalog" src = "{{ asset($item->image) }}" ></a>
-                    <div class="caption price">Rp. {{ $item->price }}</div>
-                </a>
-            </div>
-        @endforeach
-        <div class="card test">
-            <a href="{{ url('detail') }}">
-                <div class="caption">Air Force 1</div>
-                <img class="catalog" src = "/SourceIMG/AirForce1-3.png" ></a>
-                <div class="caption price">Rp. 1.xxx.xxx</div>
-            </a>
-        </div>
-        <div class="card test">
-            <a href="{{ url('detail') }}">
-                <div class="caption">Air Force 1</div>
-                <img class="catalog" src = "/SourceIMG/AirForce1-3.png" ></a>
-                <div class="caption price">Rp. 1.xxx.xxx</div>
-            </a>
-        </div>
-        <div class="card test">
-            <a href="{{ url('detail') }}">
-                <div class="caption">Air Force 1</div>
-                <img class="catalog" src = "/SourceIMG/AirForce1-3.png" ></a>
-                <div class="caption price">Rp. 1.xxx.xxx</div>
-            </a>
-        </div>
-        <div class="card test">
-            <a href="{{ url('detail') }}">
-                <div class="caption">Air Force 1</div>
-                <img class="catalog" src = "/SourceIMG/AirForce1-3.png" ></a>
-                <div class="caption price">Rp. 1.xxx.xxx</div>
-            </a>
-        </div>
     </div>
 
     <!-- Bagian Women -->
@@ -81,6 +83,7 @@
     <!-- Bagian Men  -->
     <h3 id="men" style="padding:10% 0% 2% 15%">Men</h3>
     <div class="men-container">
+        {{-- nampilin product based on category --}}
         @foreach ($product as $item)
             @if ($item->category == 'Men')
                 <div class="card test">
