@@ -2,7 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CustomAuthController;
+use App\Http\Controllers\DetailProductController;
 use App\Http\Controllers\UserController;
+use App\Models\DetailProduct;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,13 +17,9 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::get('/', function () {
-    return view('landingPage');
-});
+Route::get('/', [DetailProductController::class, 'index']);
 
-Route::get('/detail',  function(){
-    return view('detailProduct');
-});
+Route::get('/detail/{id}', [DetailProductController::class, 'detailProduct'])->name('detailProduct');
 
 Route::get('/login', [UserController::class, 'index']);// --> untuk direct ke loginPage.blade.php
 
@@ -31,12 +29,15 @@ Route::get('/register', [UserController::class, 'toRegister']); // --> untuk dir
 
 Route::post('/register/request', [UserController::class, 'register']); // --> untuk proses Registration sekaligus Authentication (Auto Login After Regist)
 
-Route::get('/profileSettings/{id}', [UserController::class, 'profileSettings']);
+Route::get('/profileSettings/{id}', [UserController::class, 'profileSettings'])->name('profileSettings');
 
 Route::post('/profileSettings/update/{id}', [UserController::class, 'updateProfileSettings'])->name('updateProfile');
 
 Route::get('/profileSettings/delete/{id}', [UserController::class, 'destroyImage'])->name('deleteImage');
 
+Route::get('/uploadProduct', [DetailProductController::class, 'uploadPage'])->name('uploadProduct');
+
+Route::post('/uploadProduct/request/{id}', [DetailProductController::class, 'uploadRequest'])->name('uploadRequest');
 // Route::post('profileSettings/image', [UserController::class, 'updateProfileSettings']);
 
 Route::get('logout', [UserController::class,'logout']);

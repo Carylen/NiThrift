@@ -21,7 +21,7 @@ b{
 .page1{
     flex-grow: .2;
     justify-content: center;
-    border: 1px solid grey;
+    border: 2px solid black;
     border-radius: 15px;
     background-color: whitesmoke;
     padding: 5vh;
@@ -36,7 +36,7 @@ b{
     margin: 50px auto;
     .avatar-edit {
         position: absolute;
-        right: 17px;
+        right: 12px;
         z-index: 1;
         top: 10px;
         input {
@@ -54,7 +54,7 @@ b{
                 font-weight: normal;
                 transition: all .2s ease-in-out;
                 &:hover {
-                    background: rgba(0, 0, 0, 0.6);
+                    background: #f1f1f1;
                     border-color: #d6d6d6;
                 }
                 &:after {
@@ -62,7 +62,7 @@ b{
                     font-family: 'FontAwesome';
                     color: #757575;
                     position: absolute;
-                    top: 8px;
+                    top: 5px;
                     left: 0;
                     right: 0;
                     text-align: center;
@@ -104,7 +104,7 @@ b{
 
 .page2{
     flex-grow: 2;
-    border: 1px solid gray;
+    border: 2px solid black;
     border-radius: 15px;
     background-color: whitesmoke;
     padding: 5vh;
@@ -199,11 +199,6 @@ b{
     padding: 5%;
     border-radius: 10px;
 }
-
-/* .btn, .btn2:hover {
-    cursor: pointer;
-    background-color: rgb(191, 191, 191);
-} */
 
 .btn2 {
     width: 100%;
