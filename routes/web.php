@@ -5,7 +5,7 @@ use App\Http\Controllers\CustomAuthController;
 use App\Http\Controllers\DetailProductController;
 use App\Http\Controllers\UserController;
 use App\Models\DetailProduct;
-
+use App\Http\Controllers\BidController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -42,4 +42,6 @@ Route::post('/uploadProduct/request/{id}', [DetailProductController::class, 'upl
 
 Route::get('logout', [UserController::class,'logout']);
 
-Route::post('/create', [ProductController::class, 'store'])-> name('storeproduct');
+Route::post('/detail/{id}/place-bid', [BidController::class, 'placeBid'])->name('placeBid');
+
+

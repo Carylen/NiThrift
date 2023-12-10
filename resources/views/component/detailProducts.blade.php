@@ -1,42 +1,36 @@
 @extends('landingPage')
 
 @section('content')
-    
+
     <div class="container">
-        @foreach ($detailProduct as $item)
-            
-        <div class="photoProduct box">
-            <img class="dimage" src="{{ asset($item->image) }}">
-        </div>
-        <div class="paymentDetail box">
-            <h1 style="text-align: center; font-weight: 900;">{{ $item->name }}</h1>
-            <div class="itemDetail">
-                <div class="info">
-                    <p>Size</p>
-                    <p>{{ $item->size }}</p>
-                </div>
-                <div class="info">
-                    <p>Condition</p>
-                    <p>{{ $item->condition }}</p>
-                </div>
-                <div class="info">
-                    <p>Item Location</p>
-                    <p>{{ $item->location }}</p>
-                </div>
+        @foreach ($product as $item)
+            <div class="photoProduct box">
+                <img class="dimage" src="{{ asset($item->image) }}">
             </div>
-            <div class="itemDetail">
-                <h4 style="margin-bottom: 2vh;">Payment Summary</h4>
-                <div class="info">
-                    <p>Product Price</p>
-                    <p>Rp. {{ $item->price }}</p>
+            <div class="paymentDetail box">
+                <h1 style="text-align: center; font-weight: 900;">{{ $item->name }}</h1>
+                <div class="itemDetail">
+                    <p>Size: {{ $item->size }}</p>
+                    <p>Condition: {{ $item->condition }}</p>
+                    <p>Item Location: {{ $item->location }}</p>
                 </div>
-                <div class="info">
-                    <p>Admin</p>
-                    <p>Rp. 80.000</p>
-                </div>
-                <div class="info total">
-                    <p>Total</p>
-                    <p>Rp. 1.500.000</p>
+                <div class="itemDetail">
+                    <h4 style="margin-bottom: 2vh;">Payment Summary</h4>
+                    <div class="info">
+                        <p>Product Price</p>
+                        <p>Rp. {{ $item->price }}</p>
+                    </div>
+                  
+                    @php
+                        $highestBid = $item->bids->sortByDesc('bid_amount')->first();
+                        $highestBidderName = optional($highestBid)->user->firstName;
+                    @endphp
+                    @if ($highestBid)
+                        <p>Highest Bidder: {{ $highestBidderName }}</p>
+                        <p>Highest Bid Amount: Rp. {{ $highestBid->bid_amount }}</p>
+                    @else
+                        <p>No bids yet</p>
+                    @endif
                 </div>
                 <h4 style="margin: 2vh 0vh;">Seller Number</h4>
                 <div class="detailSeller">
@@ -45,45 +39,33 @@
                         <p>{{ $item->sellerNumber }}</p>
                     </div>
                     <div class="buyMe">
-                        <button type="submit" class="buy-btn" >BUY</button>
+                        <form method="post" action="{{ route('placeBid', ['id' => $item->id]) }}">
+                            @csrf
+                            <label for="bid_amount">Bid Amount:</label>
+                            <input type="number" name="bid_amount" id="bid_amount" required>
+                            <button type="submit">Place Bid</button>
+                        </form>
                     </div>
                 </div>
-            @endforeach
-                
-                <div class="paymentInfo" style="display: none;">
-                    <!-- Untuk QRCODE rekening seller -->
-                    <div class="bankInfo">
-                        <img src="/SourceIMG/qrcode.png" class="bankInfo">
-                        <figcaption>Bank Central Asia.Tbk</figcaption>
+                <!-- Display success message -->
+                @if(session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
                     </div>
-                    
-                    <!-- container upload bukti transfer  -->
-                    <div class="paymentProof">
-                        <caption>Upload the proof of payment</caption>             
-                        <i class="fa-solid fa-cloud-arrow-up  fa-4x upload" style="color: white;"></i>   
-                        <button type="submit" class="paid-btn">PAID</button>
+                @endif
+                <!-- Display error messages -->
+                @if(session('error'))
+                    <div class="alert alert-danger">
+                        {{ session('error') }}
                     </div>
-                </div>
-                
-                <div class="status">
-                    <h3 style="display: none;">Payment Status</h3>
-                    <img class="success" src="/SourceIMG/icon-checkList.png" alt="">
-                    <img class="failed" src="/SourceIMG/icon-cancel.png" alt="">
-                    <img class="waiting" src="/SourceIMG/icon-pending.png" alt="">
-                </div>
+                @endif
             </div>
         </div>
-    </div>
-
+    @endforeach
     <div class="description">
         <h1 style="font-weight: 950; margin-bottom: 2vh;">Description</h1>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
-            Impedit ratione laboriosam officiis officia incidunt beatae ullam 
-            ducimus velit iusto, omnis fugiat porro. Ipsum dolorum ab cum dolores 
-            voluptatum beatae ipsa voluptatibus qui ratione, quasi fuga enim error 
-            autem aut accusamus? Tempora, natus repudiandae nostrum earum exercitationem 
-            labore quas rerum consequuntur! Esse expedita aliquid natus perferendis 
-            alias, ullam quod quas. Voluptatum, repudiandae?
+        <p>
+            {{ $item->description }}
         </p>
     </div>
     <script src="{{ asset('js/detailProduct.js') }}"></script>

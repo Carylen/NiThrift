@@ -9,19 +9,21 @@ use Illuminate\Support\Facades\Auth;
 
 class DetailProductController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $data = DetailProduct::all();
         return view('component.highlightProduct', ['product' => $data]);
     }
-    
+
     public function detailProduct($id){
         $product = DetailProduct::find($id)->get();
         if($product){
-            return view('component.detailProducts', ['detailProduct' => $product]);
+            return view('component.detailProducts', ['product' => $product]);
         }else {
             return redirect('/')->withErrors('not found');
         }
     }
+
 
     public function uploadPage(){
         // check if isLogin = TRUE, dapat upload product
