@@ -1,6 +1,6 @@
 # Laravel Project
 
-This is a Laravel project that [provide a brief description of your project].
+This project aims to make it easier for thrifting enthusiasts to do thrifting from home.
 
 ## Getting Started
 
@@ -20,15 +20,13 @@ Before you begin, ensure you have the following installed on your machine:
 2. Run the following command to clone the repository:
 
     ```bash
-    git clone https://github.com/your-username/your-laravel-project.git
+    git clone https://github.com/Carylen/NiThrift.git
     ```
-
-   Replace `your-username` with your GitHub username and `your-laravel-project` with the name of your Laravel project.
 
 3. Change into the project directory:
 
     ```bash
-    cd your-laravel-project
+    cd NiThrift
     ```
 
 ### Install Dependencies
@@ -75,22 +73,11 @@ Before you begin, ensure you have the following installed on your machine:
 
    The application should now be accessible at `http://localhost:8000`.
 
-## Running Tests
-
-Explain how to run the automated tests for this system (if applicable).
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system.
-
 ## Built With
 
 - [Laravel](https://laravel.com/) - The PHP framework used
 - [Composer](https://getcomposer.org/) - Dependency Manager for PHP
 
-## Contributing
-
-Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
 
 ## License
 
