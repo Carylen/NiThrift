@@ -128,7 +128,6 @@ class UserController extends Controller
             
             $photo->move(public_path($path), $photoName);
             $data->image = $photoName;
-            $data->save();
         }
 
         // cek tiap field apakah menerima input dari user atau tidak, if True -> update to db
@@ -144,6 +143,7 @@ class UserController extends Controller
         if($request->has('postcalCode')){
             $data->postcalCode = $request->input('postcalCode');
         }
+
         $data->save();
         return redirect('/')->with('success', 'Data berhasil diperbarui');
         
@@ -155,7 +155,7 @@ class UserController extends Controller
 
     public function destroyImage($id){
         $data = User::where('id', $id)->first();
-        File::delete(public_path('photo'). '/' . $data->image);
+        File::delete(public_path($data->image));
         $data->update(['image' => null]); # --> delete data image dari db (null)
 
         return redirect()->back();

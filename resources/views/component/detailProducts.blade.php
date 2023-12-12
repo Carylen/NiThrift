@@ -3,46 +3,46 @@
 @section('content')
     
     <div class="container">
-        @foreach ($detailProduct as $item)
+        @foreach ($detailProduct as $data)
             
         <div class="photoProduct box">
-            <img class="dimage" src="{{ asset($item->image) }}">
+            <img class="dimage" src="{{ asset($data->image) }}">
         </div>
         <div class="paymentDetail box">
-            <h1 style="text-align: center; font-weight: 900;">{{ $item->name }}</h1>
+            <h1 style="text-align: center; font-weight: 900;">{{ $data->name }}</h1>
             <div class="itemDetail">
                 <div class="info">
                     <p>Size</p>
-                    <p>{{ $item->size }}</p>
+                    <p>{{ $data->size }}</p>
                 </div>
                 <div class="info">
                     <p>Condition</p>
-                    <p>{{ $item->condition }}</p>
+                    <p>{{ $data->condition }}</p>
                 </div>
                 <div class="info">
-                    <p>Item Location</p>
-                    <p>{{ $item->location }}</p>
+                    <p>data Location</p>
+                    <p>{{ $data->location }}</p>
                 </div>
             </div>
             <div class="itemDetail">
                 <h4 style="margin-bottom: 2vh;">Payment Summary</h4>
                 <div class="info">
                     <p>Product Price</p>
-                    <p>Rp. {{ $item->price }}</p>
+                    <p>Rp. {{ $data->price }}</p>
                 </div>
-                <div class="info">
+                {{-- <div class="info">
                     <p>Admin</p>
                     <p>Rp. 80.000</p>
                 </div>
                 <div class="info total">
                     <p>Total</p>
                     <p>Rp. 1.500.000</p>
-                </div>
+                </div> --}}
                 <h4 style="margin: 2vh 0vh;">Seller Number</h4>
                 <div class="detailSeller">
                     <div class="phoneNum">
-                        <p>{{ $item->sellerName }}</p>
-                        <p>{{ $item->sellerNumber }}</p>
+                        <p>{{ $data->sellerName }}</p>
+                        <p>{{ $data->sellerNumber }}</p>
                     </div>
                     <div class="buyMe">
                         <button type="submit" class="buy-btn" >BUY</button>

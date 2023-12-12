@@ -34,13 +34,14 @@ function fill(destination) {
     destination.appendChild(anchor)
 }
 
-for (let i = 0; i < 10; i++) {
-    fill(container)
-}
+/* ---- INI UNTUK APPEND DI MEN-CONTAINER & WOMEN-CONTAINER ---- */
+// for (let i = 0; i < 10; i++) {
+//     fill(container)
+// }
 
-for (let i = 0; i < 10; i++) {
-    fill(menContainer)
-}
+// for (let i = 0; i < 10; i++) {
+//     fill(menContainer)
+// }
 
 /* ---- INI UNTUK CARD CARD TRENDING PRODUCT ----  */
 

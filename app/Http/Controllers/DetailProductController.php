@@ -15,7 +15,7 @@ class DetailProductController extends Controller
     }
     
     public function detailProduct($id){
-        $product = DetailProduct::find($id)->get();
+        $product = DetailProduct::where('id',$id)->get();
         if($product){
             return view('component.detailProducts', ['detailProduct' => $product]);
         }else {
@@ -40,47 +40,36 @@ class DetailProductController extends Controller
         $seller = User::where('id', $id)->first();
         
         $photo = $request->file('photoProduct');
+        $request->validate([ 'photoProduct' =>'required|mimes:png,jpg,jpeg' ]);
 
         if($request->hasFile('photoProduct')){
-            $request->validate([ 'photoProduct' =>'required|mimes:png,jpg,jpeg' ]);
             $path = 'photoProduct';
-
-            if ($data->image) {
-                // jika TRUE (file exists) -> maka penamaannya akan menimpa nama file lama, mencegah duplicate data.
-                $photoName = ($data->image);
-            } else {
-                // Jika FALSE (file doesn't exists) -> maka penamaan baru : [id-firstName].jpg/jpeg/png 
-                $photoExtension = $photo->extension();
-                $photoName = $path . "/" . $id . "-" . $data->firstName . "." . $photoExtension;
-            }
-            
+            $photoExtension = $photo->extension();
+            $photoOriginal = $photo->getClientOriginalName();
+            $photoName = $path . "/" . "-" . $photoOriginal . "." . $photoExtension;
             $photo->move(public_path($path), $photoName);
             $data->image = $photoName;
-            // $data->save();
         }
 
         // cek tiap field apakah menerima input dari user atau tidak, if True -> update to db
-        if($request->has('itemName')){
-            $data->name = $request->input('itemName');
-        }
-        if($request->has('itemSize')){
-            $data->size = $request->input('itemSize');
-        }
-        if($request->has('itemPrice')){
-            $data->price = $request->input('itemPrice');
-        }
-        if($request->has('itemCondition')){
-            $data->condition = $request->input('itemCondition');
-        }
-        if($request->has('itemCategory')){
-            $data->category = $request->input('itemCategory');
-        }
-
+        $request->validate([
+            'itemName' => 'required',
+            'itemSize' => 'required',
+            'itemPrice' => 'required',
+            'itemCondition' => 'required',
+            'itemCategory' => 'required'
+        ]);
+                            
         $data->users_id = $id;
+        $data->name = $request->itemName;
+        $data->size = $request->itemSize;
+        $data->price = $request->itemPrice;
+        $data->condition = $request->itemCondition;
+        $data->category = $request->itemCategory;
         $data->location = $seller->province . ", " . $seller->postcalCode;
         $data->sellerName = $seller->firstName . " " . $seller->lastName;
         $data->sellerNumber = $seller->phone;
-        dump($data);
+        // dump($data);
         
         $data->save();
 
