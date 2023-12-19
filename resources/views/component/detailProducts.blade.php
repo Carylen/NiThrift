@@ -30,23 +30,21 @@
                     <p>Product Price</p>
                     <p>Rp. {{ $data->price }}</p>
                 </div>
-                {{-- <div class="info">
-                    <p>Admin</p>
-                    <p>Rp. 80.000</p>
-                </div>
-                <div class="info total">
-                    <p>Total</p>
-                    <p>Rp. 1.500.000</p>
-                </div> --}}
                 <h4 style="margin: 2vh 0vh;">Seller Number</h4>
                 <div class="detailSeller">
                     <div class="phoneNum">
                         <p>{{ $data->sellerName }}</p>
                         <p>{{ $data->sellerNumber }}</p>
                     </div>
-                    <div class="buyMe">
-                        <button type="submit" class="buy-btn" >BUY</button>
-                    </div>
+                    @if (Auth::user()->id == $data->users_id)
+                        <div class="">
+                            <button type="submit" class="btn btn-danger" >Delete</button>
+                        </div>
+                    @else
+                        <div class="buyMe">
+                            <button type="submit" class="buy-btn" >BUY</button>
+                        </div>
+                    @endif
                 </div>
             @endforeach
                 

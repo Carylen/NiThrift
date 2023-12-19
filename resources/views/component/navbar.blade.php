@@ -9,7 +9,6 @@
     </ul>
     <div class="rightNav">
 
-        {{-- <a class="cart" href="#selling"><img src="/SourceIMG/cart-shopping-solid.svg" class="logo"></a> --}}
         
         @if (Auth::check()) {{-- untuk cek Login -> True or False sehingga menampilkan informasi ketika sudah login --}}
             <a class=" rounded-pill border border-secondary p-2 shadow ms-n7" href="{{ route('profileSettings', Auth::user()->id) }}" style="display: flex; flex-direction:row">
@@ -19,13 +18,18 @@
                     <b>{{  Auth::user()->firstName }}</b>
                 </figcaption>   
             </a>
+            {{-- <div class="vline"></div> 
+            <a class="cart" href="#selling">
+                <img src="/SourceIMG/cart-shopping-solid.svg" class="">
+            </a> --}}
             <div class="vline"></div> {{-- untuk garis pembatas --}}
             <a href="{{ url('logout') }}">
                 <button type="button" class="btn btn-warning rounded-pill px-4 py-2 shadow">Logout</button>
             </a>
+            
         @endif
         @if (!Auth::check())
-            <a href="{{ url('login') }}"><button type="button" class="btn btn-success">Login</button></a>
+            <a href="{{ url('login') }}"><button type="button" class="btn btn-success rounded-pill px-4 py-2 shadow">Login</button></a>
         @endif
     </div>
 </header>

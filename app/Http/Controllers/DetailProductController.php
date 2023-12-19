@@ -73,6 +73,10 @@ class DetailProductController extends Controller
         
         $data->save();
 
-        return redirect('/')->with('success', 'Data berhasil diperbarui');
+        return redirect('/')->with('success', 'Data updated successfully');
+    }
+
+    public function cart(){
+        
     }
 }

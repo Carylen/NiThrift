@@ -52,4 +52,8 @@ class User extends Authenticatable
     public function toDetailProducts(){
         return $this->hasMany(DetailProduct::class);
     }
+
+    public function toCart(){
+        return $this->hasMany(Cart::class);
+    }
 }
