@@ -202,12 +202,14 @@ figcaption{
 
 /* container for Recommendation 'For you' */
 .forYou{
+    /* max-height: 26vh; */
+    /* overflow: scroll; */
     display: grid;
-    grid-template-columns: repeat(5, auto);
-    grid-gap: 4%;
+    grid-template-columns: repeat(6, auto);
+    grid-row-gap: 6%;
+    grid-column-gap: 2%;
     justify-content: center;
     margin: 2%;
-    /* background-color: rgba(0, 0, 0, 0.19); */
 }
 
 .card{

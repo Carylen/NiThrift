@@ -35,13 +35,13 @@ function fill(destination) {
 }
 
 /* ---- INI UNTUK APPEND DI MEN-CONTAINER & WOMEN-CONTAINER ---- */
-// for (let i = 0; i < 10; i++) {
-//     fill(container)
-// }
+for (let i = 0; i < 5; i++) {
+    fill(container)
+}
 
-// for (let i = 0; i < 10; i++) {
-//     fill(menContainer)
-// }
+for (let i = 0; i < 5; i++) {
+    fill(menContainer)
+}
 
 /* ---- INI UNTUK CARD CARD TRENDING PRODUCT ----  */
 

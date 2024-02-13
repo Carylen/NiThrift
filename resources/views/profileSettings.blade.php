@@ -22,7 +22,7 @@
             <li><a href="#women">Women</a></li>
             <li><a href="#men">Men</a></li>
         </ul>
-        <a href="{{ url('logout') }}"><button type="button" class="btn btn-warning p-2">Logout</button></a>
+        <a href="{{ url('logout') }}"><button type="button" class="btn btn-warning rounded-pill px-3 py-2">Logout</button></a>
     </header>
     @foreach ($user as $data)
     <div class="container-profile">
@@ -44,10 +44,10 @@
                     </div>
 
                     <div class="container-sm text-center">
-                        <div class="btn btn-danger py-2 m-2">
+                        <div class="btn btn-danger rounded-pill py-2">
                             <a href="{{ route('deleteImage', $data->id) }}">Delete</a>
                         </div>
-                        <button type="submit" class="btn btn-primary py-2 m-2">save</button>
+                        <button type="submit" class="btn btn-primary rounded-pill py-2">save</button>
                     </div>
                 </div>
             </form>
